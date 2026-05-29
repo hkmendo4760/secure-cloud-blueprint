@@ -42,3 +42,15 @@ terraform.rc
 # Optional: ignore plan files saved before destroying Terraform configuration
 # Uncomment the line below if you want to ignore planout files.
 # planout
+
+# --- Added for Security/Environment Cleanup ---
+
+# Ignore security scan reports
+*.sarif
+*.json
+
+# Ignore IDE/Environment folders
+.vscode/
+
+# Ignore any local test logs
+*.log
