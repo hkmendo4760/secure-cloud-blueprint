@@ -54,3 +54,15 @@ terraform.rc
 
 # Ignore any local test logs
 *.log
+
+# --- Trivy Security Scanner ---
+# Ignore Trivy database cache
+.cache/trivy/
+
+# Ignore Trivy specific reports
+trivy-results.sarif
+trivy-report.json
+trivy-report.txt
+
+# Note: Keep .trivyignore in version control so your team 
+# shares the same security suppression rules.
