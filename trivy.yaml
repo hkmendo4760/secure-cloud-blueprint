@@ -1,0 +1,3 @@
+scan:
+  severity: CRITICAL,HIGH
+  exit-code: 1
