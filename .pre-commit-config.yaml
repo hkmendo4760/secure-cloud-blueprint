@@ -1,0 +1,11 @@
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.97.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+  - repo: https://github.com/aquasecurity/trivy
+    rev: v0.52.2  # Ensure this uses a valid release tag
+    hooks:
+      - id: trivy-config
+        args: ["--exit-code", "1", "."]
