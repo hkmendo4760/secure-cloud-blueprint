@@ -24,7 +24,20 @@ This repository contains the Terraform configuration for deploying a secure, pro
 | Public Access | Blocked |
 
 ## Getting Started
+Prerequisites
+Terraform installed.
+
+AWS CLI configured with appropriate credentials.
+
+Trivy installed for security scanning.
+
+Security Scanning
+Before applying changes, ensure the configuration meets security requirements by running the Trivy scan:
+```bash
+trivy config s3.tf
+
 ### Deployment
+To deploy the infrastructure, run the following commands:
 ```bash
 terraform init
 terraform plan
