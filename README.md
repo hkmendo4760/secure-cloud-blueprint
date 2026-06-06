@@ -13,7 +13,7 @@ This repository contains the Terraform configuration for deploying a secure, pro
 - **Encryption at Rest**:
   - **Primary Data Bucket**: Uses a customer-managed KMS key.
   - **Logging Bucket**: Uses `AES256` (standard for logging).
-- **Versioning**: Enabled on all buckets to facilitate data recovery and auditability (https://www.google.com/search?q=https://avd.aquasec.com/misconfig/aws/s3/aws-0090/ compliant).
+- **Versioning**: Enabled on all buckets to facilitate data recovery and auditability [AWS-0090](https://www.google.com/search?q=https://avd.aquasec.com/misconfig/aws/s3/aws-0090/) compliant.
 - **Audit Logging**: Implements mandatory server access logging to track all requests made to the primary data bucket.
 - **Infrastructure Compliance**: The infrastructure has been scanned and verified against security standards using [Trivy](https://trivy.dev/), ensuring zero misconfigurations.
 
