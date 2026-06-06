@@ -17,9 +17,4 @@ provider "aws" {
   shared_credentials_files = []
   shared_config_files      = []
 
-  # 3. Use the OIDC role assumption
-  assume_role {
-    role_arn     = "arn:aws:iam::811352020564:role/terraform-s3-deployer-role"
-    session_name = "TerraformS3Deployment"
-  }
 }
