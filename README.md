@@ -13,6 +13,9 @@ This repository contains the Terraform configuration for deploying a secure, pro
 - **Encryption at Rest**:
   - **Primary Data Bucket**: Uses a customer-managed KMS key.
   - **Logging Bucket**: Uses `AES256` (standard for logging).
+- **Versioning**: Enabled on all buckets to facilitate data recovery and auditability (AWS-0090 compliant).
+- **Audit Logging**: Implements mandatory server access logging to track all requests made to the primary data bucket.
+- **Versioning**: Enabled on all buckets to facilitate data recovery and auditability (AWS-0090 compliant).
 
 | Feature | Status |
 | :--- | :--- |
