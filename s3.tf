@@ -1,4 +1,4 @@
-# 1. Main Bucket
+# 1. Main Data Bucket
 resource "aws_s3_bucket" "secure_bucket" {
   bucket = "hkmendo-secure-data-codespace"
   tags   = { Environment = "Production", Security = "High" }
@@ -31,7 +31,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   }
 }
 
-# 2. Log Bucket
+# 2. Log Bucket (Destination for server access logs)
 resource "aws_s3_bucket" "log_bucket" {
   bucket = "hkmendo-secure-data-codespace-logs"
   tags   = { Environment = "Production", Security = "High" }
@@ -50,7 +50,9 @@ resource "aws_s3_bucket_public_access_block" "log_bucket_access" {
   restrict_public_buckets = true
 }
 
-# Fixes AWS-0132 for log bucket by explicitly mapping AES256
+# AWS-0132 is ignored here because S3 server access logging 
+# does not support SSE-KMS (Customer Managed Keys).
+# trivy:ignore:aws-0132
 resource "aws_s3_bucket_server_side_encryption_configuration" "log_encryption" {
   bucket = aws_s3_bucket.log_bucket.id
   rule {
@@ -60,7 +62,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "log_encryption" {
   }
 }
 
-# Fixes AWS-0089 by enabling logging for the log bucket itself
 resource "aws_s3_bucket_logging" "log_bucket_logging" {
   bucket        = aws_s3_bucket.log_bucket.id
   target_bucket = aws_s3_bucket.log_bucket.id
