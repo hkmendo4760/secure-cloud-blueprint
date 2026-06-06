@@ -23,6 +23,15 @@ This repository contains the Terraform configuration for deploying a secure, pro
 | Encryption | Active |
 | Public Access | Blocked |
 
+### Infrastructure Overview
+The deployment provisions the following resources:
+- **aws_s3_bucket: Primary storage for application data.
+aws_s3_bucket: Dedicated bucket for storing server access logs.
+aws_kms_key: Customer Managed Key (CMK) with automatic rotation enabled.
+aws_s3_bucket_public_access_block: Enforced on all buckets.
+aws_s3_bucket_versioning: Enabled on all buckets.
+aws_s3_bucket_logging: Configured for primary bucket request tracking.
+
 ## Getting Started
 **Prerequistites**
 - **Terraform installed**.
