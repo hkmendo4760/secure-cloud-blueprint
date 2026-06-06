@@ -24,8 +24,8 @@ This repository contains the Terraform configuration for deploying a secure, pro
 | Public Access | Blocked |
 
 ## Getting Started
-- **Prerequistites**
-Terraform installed.
+**Prerequistites**
+- **Terraform installed**
 
 AWS CLI configured with appropriate credentials.
 
