@@ -29,7 +29,7 @@ This repository contains the Terraform configuration for deploying a secure, pro
 - **AWS CLI configured with appropriate credentials**.
 - **Trivy installed for security scanning**.
 
-**Security Scanning
+**Security Scanning**
 Before applying changes, ensure the configuration meets security requirements by running the Trivy scan:
 ```bash
 trivy config s3.tf
@@ -41,3 +41,12 @@ To deploy the infrastructure, run the following commands:
 terraform init
 terraform plan
 terraform apply
+```
+
+### Security Compliance Notes
+Log Bucket Encryption: While AWS-0132 generally requires Customer Managed Keys (CMKs), we utilize AES256 for the logging destination bucket because S3 server access logging does not support SSE-KMS. This exception is explicitly suppressed in the configuration using # trivy:ignore:aws-0132 to maintain a passing security audit.
+
+Tagging: All resources are tagged with Environment = "Production" and Security = "High" to satisfy organization-wide metadata and compliance requirements.
+
+### Troubleshooting
+If you encounter issues during terraform apply, verify your AWS credentials and ensure that the S3 bucket names defined in s3.tf are globally unique, as required by AWS.
