@@ -5,10 +5,23 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write # Required for OIDC authentication
-      contents: read
+      id-token: write # Required for requesting the OIDC JWT
+      contents: read  # Required for actions/checkout
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform init
-      - run: terraform plan
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::811352020564:role/terraform-s3-deployer-role
+          aws-region: us-west-2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
