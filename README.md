@@ -14,6 +14,12 @@ This repository contains the Terraform configuration for deploying a secure, pro
   - **Primary Data Bucket**: Uses a customer-managed KMS key.
   - **Logging Bucket**: Uses `AES256` (standard for logging).
 
+| Feature | Status |
+| :--- | :--- |
+| Versioning | Enabled |
+| Encryption | Active |
+| Public Access | Blocked |
+
 ## Getting Started
 ### Deployment
 ```bash
