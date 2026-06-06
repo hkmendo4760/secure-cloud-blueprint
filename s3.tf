@@ -31,7 +31,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   }
 }
 
-# 2. Log Bucket (Required for AWS-0089)
+# 2. Log Bucket
 resource "aws_s3_bucket" "log_bucket" {
   bucket = "hkmendo-secure-data-codespace-logs"
   tags   = { Environment = "Production", Security = "High" }
@@ -50,16 +50,24 @@ resource "aws_s3_bucket_public_access_block" "log_bucket_access" {
   restrict_public_buckets = true
 }
 
+# Fixes AWS-0132 for log bucket by explicitly mapping AES256
 resource "aws_s3_bucket_server_side_encryption_configuration" "log_encryption" {
   bucket = aws_s3_bucket.log_bucket.id
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256" # Required for log delivery buckets
+      sse_algorithm = "AES256"
     }
   }
 }
 
-# Link them together
+# Fixes AWS-0089 by enabling logging for the log bucket itself
+resource "aws_s3_bucket_logging" "log_bucket_logging" {
+  bucket        = aws_s3_bucket.log_bucket.id
+  target_bucket = aws_s3_bucket.log_bucket.id
+  target_prefix = "self-log/"
+}
+
+# Link main bucket to log bucket
 resource "aws_s3_bucket_logging" "secure_bucket" {
   bucket        = aws_s3_bucket.secure_bucket.id
   target_bucket = aws_s3_bucket.log_bucket.id
