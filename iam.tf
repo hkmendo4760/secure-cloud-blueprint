@@ -27,7 +27,6 @@ resource "aws_iam_role" "existing_role" {
 }
 resource "aws_iam_policy" "s3_deployment_policy" {
   name        = "S3DeploymentPolicy"
-  description = "Allows creation of encrypted S3 buckets and KMS keys"
 
   policy = jsonencode({
     Version = "2012-10-17"
