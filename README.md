@@ -1,6 +1,17 @@
 Secure Cloud Blueprint: S3 Infrastructure
 This repository contains the Terraform configuration for deploying a secure, production-ready Amazon S3 bucket architecture. The configuration enforces security best practices, including encryption at rest, public access blocking, versioning, and server access logging.
 
+Table of Contents
+Features
+
+Infrastructure Overview
+
+Getting Started
+
+Security Compliance Notes
+
+Troubleshooting
+
 Features
 Public Access Protection: Explicitly blocks all public access to both primary data buckets and logging buckets.
 
