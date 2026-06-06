@@ -25,7 +25,9 @@ This repository contains the Terraform configuration for deploying a secure, pro
 
 ## Getting Started
 **Prerequistites**
-- **Terraform installed**
+- **Terraform installed**.
+- **AWS CLI configured with appropriate credentials**.
+- **Trivy installed for security scanning**.
 
 AWS CLI configured with appropriate credentials.
 
