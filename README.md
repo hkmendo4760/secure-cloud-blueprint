@@ -11,7 +11,7 @@ This repository contains the Terraform configuration for deploying a secure, pro
 ## Features
 - **Public Access Protection**: Explicitly blocks all public access to both primary and logging buckets.
 - **Encryption at Rest**:
-  - **Primary Data Bucket**: Uses a customer-managed KMS key.
+  - **Primary Data Bucket**: Uses a customer-managed KMS key.[AWS-0132](https://avd.aquasec.com/misconfig/aws/s3/aws-0132/) compliant.
   - **Logging Bucket**: Uses `AES256` (standard for logging).
 - **Versioning**: Enabled on all buckets to facilitate data recovery and auditability [AWS-0090](https://www.google.com/search?q=https://avd.aquasec.com/misconfig/aws/s3/aws-0090/) compliant.
 - **Audit Logging**: Implements mandatory server access logging to track all requests made to the primary data bucket.
