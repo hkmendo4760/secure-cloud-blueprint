@@ -16,6 +16,7 @@ This repository contains the Terraform configuration for deploying a secure, pro
 - **Versioning**: Enabled on all buckets to facilitate data recovery and auditability (https://www.google.com/search?q=https://avd.aquasec.com/misconfig/aws/s3/aws-0090/ compliant).
 - **Audit Logging**: Implements mandatory server access logging to track all requests made to the primary data bucket.
 - **nfrastructure Compliance**: The infrastructure has been scanned and verified against security standards using https://trivy.dev/, ensuring zero misconfigurations.
+  
 | Feature | Status |
 | :--- | :--- |
 | Versioning | Enabled |
