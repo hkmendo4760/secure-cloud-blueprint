@@ -1,18 +1,14 @@
 resource "aws_s3_bucket" "secure_bucket" {
-  bucket = "hkmendo-secure-data-codespace" 
+  bucket = "hkmendo-secure-data-codespace"
 }
 
+# Temporarily use default AWS managed encryption (AES256)
+# This avoids the "Missing KMS Key" error while you get the backend running
 resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   bucket = aws_s3_bucket.secure_bucket.id
   rule {
     apply_server_side_encryption_by_default {
-      kms_master_key_id = aws_kms_key.s3_key.arn
-      sse_algorithm     = "aws:kms"
+      sse_algorithm = "AES256"
     }
   }
-}
-
-resource "aws_kms_key" "s3_key" {
-  description             = "CMK for S3 bucket encryption"
-  enable_key_rotation     = true
 }
